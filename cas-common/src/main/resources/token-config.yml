@@ -1,0 +1,2 @@
+#配置token最长无操作有效时长，单位：min
+token.valid-time: 40
