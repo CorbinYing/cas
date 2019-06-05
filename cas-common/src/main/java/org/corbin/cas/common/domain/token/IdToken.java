@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import org.corbin.cas.common.domain.Auth.AuthenticationInfo;
 
+import java.io.Serializable;
+
 /**
  * 用户的登录令牌信息类，
  * 只记录用户的登录状态，
@@ -15,10 +17,11 @@ import org.corbin.cas.common.domain.Auth.AuthenticationInfo;
 @Accessors(chain = true)
 @Getter
 @Setter
-public class IdToken extends AbstractToken {
+@ToString
+@NoArgsConstructor
+public class IdToken extends AbstractToken implements Serializable {
 
-
-
+    private static final long serialVersionUID = -3593311838936499373L;
     /**
      * 用户登录时生成的唯一的ticket
      * 全局唯一，是用户是否登录的唯一凭证，

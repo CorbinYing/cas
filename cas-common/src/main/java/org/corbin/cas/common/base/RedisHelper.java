@@ -26,20 +26,29 @@ import org.springframework.context.annotation.PropertySource;
 public  class RedisHelper<T> extends AbstractRedisHelper<T>{
 
     /**
+     * idToken 有效时间
+     *
      * 从配置文件读取token的存活时间,
-     * 未读取到时，默认30
+     * 未读取到时，默认30分钟
      */
     @Value("${token.valid-time:30}")
-    protected  Integer tokenValidTime;
-//    private AbstractRedisHelper abstractRedisHelper;
-//
-//    public RedisHelper(AbstractRedisHelper abstractRedisHelper){
-//        super();
-//        this.abstractRedisHelper=abstractRedisHelper;
-//    }
+    protected  Integer idTokenValidTime;
+
+    /**
+     * 授权token 有效时间
+     *
+     * 从配置文件读取token的存活时间,
+     * 未读取到时，默认30分钟
+     */
+    @Value("${token.valid-time:30}")
+    protected  Integer authTokenValidTime;
 
     @Override
-    protected  Integer resetValidTime() {
-        return this.tokenValidTime;
+    protected  Integer resetIdTokenValidTime() {
+        return this.idTokenValidTime;
+    }
+    @Override
+    protected  Integer resetAuthTokenValidTime() {
+        return this.authTokenValidTime;
     }
 }

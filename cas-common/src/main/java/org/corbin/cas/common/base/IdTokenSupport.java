@@ -1,5 +1,6 @@
 package org.corbin.cas.common.base;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import lombok.NoArgsConstructor;
 import org.corbin.cas.common.domain.Auth.AuthenticationInfo;
@@ -47,6 +48,7 @@ public class IdTokenSupport extends RedisHelper<IdToken> {
      * @return
      */
     public IdToken findAuthenticateInfo(@NonNull String idTicket) {
+      //  getOne(ID_TOKEN_PREFIX + idTicket);
         return getOne(ID_TOKEN_PREFIX + idTicket);
     }
 

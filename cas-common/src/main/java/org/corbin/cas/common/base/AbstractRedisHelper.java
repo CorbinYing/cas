@@ -2,6 +2,7 @@ package org.corbin.cas.common.base;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.corbin.cas.common.domain.token.IdToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,9 +27,15 @@ public abstract class AbstractRedisHelper<T> {
     private RedisTemplate redisTemplate;
 
     /**
-     * 数据有效时长，单位:分钟
+     * 重置 idtoken最长数据有效时长，单位:分钟
      */
-    protected Integer validTime ;
+    protected abstract Integer resetIdTokenValidTime();
+
+    /**
+     * 重置 authtoken最长数据有效时长，单位:分钟
+     */
+    protected abstract Integer resetAuthTokenValidTime();
+
 
     /**
      * 删除指定键值对
@@ -61,7 +68,6 @@ public abstract class AbstractRedisHelper<T> {
     @SuppressWarnings("unchecked")
     protected T getOne(@NonNull String key) {
         return (T) redisTemplate.opsForValue().get(key);
-
     }
 
     /**
@@ -87,9 +93,11 @@ public abstract class AbstractRedisHelper<T> {
      */
     @SuppressWarnings("unchecked")
     protected void putOne(String key, T value) {
-        System.out.println(resetValidTime());
-        redisTemplate.opsForValue().set(key, value, resetValidTime() == null ? validTime : resetValidTime(), TimeUnit.MINUTES);
-
+        if (value instanceof IdToken) {
+            redisTemplate.opsForValue().set(key, value, resetIdTokenValidTime(), TimeUnit.MINUTES);
+        }
+        //TODO
+        //其他数据类型设置不同的有效时间
     }
 
 
@@ -113,12 +121,6 @@ public abstract class AbstractRedisHelper<T> {
         return redisTemplate.hasKey(key);
     }
 
-    /**
-     * 重置最长数据有效时长，单位:分钟
-     *
-     * @return
-     */
-    protected abstract Integer resetValidTime();
 
     /**
      * 获取所有key
