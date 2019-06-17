@@ -22,12 +22,14 @@ import java.io.Serializable;
 public class IdToken extends AbstractToken implements Serializable {
 
     private static final long serialVersionUID = -3593311838936499373L;
+
+
     /**
      * 用户登录时生成的唯一的ticket
      * 全局唯一，是用户是否登录的唯一凭证，
      * 但具有时效性
      */
-    protected String ticket;
+    protected String idTicket;
 
     /**
      * 认证信息

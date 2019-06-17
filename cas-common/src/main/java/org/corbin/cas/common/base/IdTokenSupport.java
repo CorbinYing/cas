@@ -1,6 +1,5 @@
 package org.corbin.cas.common.base;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import lombok.NoArgsConstructor;
 import org.corbin.cas.common.domain.Auth.AuthenticationInfo;
@@ -89,7 +88,7 @@ public class IdTokenSupport extends RedisHelper<IdToken> {
         Supplier<IdToken> idTokenSupplier = IdToken::new;
         IdToken idToken = idTokenSupplier.get()
                 .setAuthenticationInfo(authenticationInfo)
-                .setTicket(idTicket);
+                .setIdTicket(idTicket);
         Date date = new Date();
         idToken.setCreateTime(date);
         idToken.setUpdateTime(date);

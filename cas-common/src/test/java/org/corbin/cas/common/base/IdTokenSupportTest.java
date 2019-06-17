@@ -20,8 +20,6 @@ import static org.junit.Assert.*;
 public class IdTokenSupportTest {
     @Autowired
     IdTokenSupport idTokenSupport;
-    @Autowired
-    private AbstractRedisHelper abstractRedisHelper;
 
     @Test
     public void authenticateStatus() {
@@ -30,7 +28,7 @@ public class IdTokenSupportTest {
 
     @Test
     public void findAuthenticateInfo() {
-        System.out.println( idTokenSupport.findAuthenticateInfo("a4dcc81e340d466cb6cdad163a217116"));
+        System.out.println( idTokenSupport.findAuthenticateInfo("f5655e3ef84548b686065c493e2eac21"));
     }
 
     @Test

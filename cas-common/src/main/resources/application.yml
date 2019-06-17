@@ -10,11 +10,8 @@ spring:
         max-idle: 20
         min-idle: 5
         max-wait: 1000
-
-https:
-  port: 9443
-  ssl:
-    key-store: tomcat.keystore
-    key-store-password: 123456
 server:
-  port: 6666
+  port: 9443
+#  ssl:
+#    key-store: tomcat.keystore
+#    key-store-password: 123456

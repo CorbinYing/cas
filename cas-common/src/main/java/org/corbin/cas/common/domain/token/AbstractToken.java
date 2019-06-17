@@ -26,4 +26,5 @@ public abstract class AbstractToken {
      */
     protected Date updateTime;
 
+
 }
